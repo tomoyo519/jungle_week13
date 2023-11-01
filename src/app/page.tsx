@@ -3,8 +3,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import './globals.css'
 // import "tailwindcss/tailwind.css"
 const navigation = [
-  { name: '게시글 작성하기', href: '#' },
-  { name: '게시글 확인하기', href: '#' },
+  { name: '게시글 작성하기', href: '/post' },
+  { name: '게시글 확인하기', href: '/postList' },
 
 ]
 export default function Home() {
