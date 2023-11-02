@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Navbar from '@/app/navbar';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Navbar from "@/app/navbar";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface IPost {
   id: number;
@@ -15,12 +15,12 @@ export default function Id() {
   const { id } = router.query;
   const [post, setPost] = useState<IPost>();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [editedTitle, setEditedTitle] = useState<string>('');
-  const [editedContext, setEditedContext] = useState<string>('');
+  const [editedTitle, setEditedTitle] = useState<string>("");
+  const [editedContext, setEditedContext] = useState<string>("");
 
   useEffect(() => {
     const res = axios
-      .get('http://localhost:4000/post', {
+      .get("http://localhost:4000/post", {
         params: {
           id: id,
         },
@@ -35,8 +35,8 @@ export default function Id() {
     const res = axios
       .delete(`http://localhost:4000/post/${id}`)
       .then((res) => {
-        alert('삭제가 완료 되었어요!.');
-        router.push('/postList');
+        alert("삭제가 완료 되었어요!.");
+        router.push("/postList");
       })
       .catch((err) => {
         console.log(err);
@@ -45,23 +45,22 @@ export default function Id() {
 
   function editPost() {
     if (editedTitle.length < 10 && editedContext.length > 0) {
-      alert('제목은 열글자 이상 작성해주세요');
+      alert("제목은 열글자 이상 작성해주세요");
     }
     if (editedContext.length <= 0) {
-      alert('내용을 입력해주세요.');
+      alert("내용을 입력해주세요.");
     }
     if (editedContext.length <= 0 && editedTitle.length < 10) {
-      alert('제목은 열 자자 이상, 내용은 한 글자 이상 작성 해주세요.');
+      alert("제목은 열 자자 이상, 내용은 한 글자 이상 작성 해주세요.");
     }
     const res = axios
-      .put('http://localhost:4000/post', {
-        id: id,
+      .put(`http://localhost:4000/post/${id}`, {
         title: editedTitle,
         context: editedContext,
       })
       .then((res) => {
-        alert('수정이 완료 되었어요!');
-        router.push('/postList');
+        alert("수정이 완료 되었어요!");
+        router.push("/postList");
       })
       .catch((err) => {
         alert(err);
@@ -85,7 +84,7 @@ export default function Id() {
                       id="title"
                       className=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="10글자 이상 제목을 작성해주세요."
-                      defaultValue={''}
+                      defaultValue={""}
                       value={editedTitle}
                       onChange={(e) => setEditedTitle(e.target.value)}
                     />
@@ -97,7 +96,7 @@ export default function Id() {
                       id="comment"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="내용을 작성해주세요."
-                      defaultValue={''}
+                      defaultValue={""}
                       value={editedContext}
                       onChange={(e) => setEditedContext(e.target.value)}
                     />
