@@ -1,58 +1,53 @@
-
+import { useRouter } from 'next/navigation'
 import { Tab } from '@headlessui/react'
 import "tailwindcss/tailwind.css"
-import { useState , useEffect} from 'react'
-import { newPost } from '../../api/addPost'
+import { useState} from 'react'
 import axios from 'axios'
+import Navbar from '@/app/navbar'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+const navigation = [
+  { name: '게시글 작성하기', href: '/post' },
+  { name: '게시글 확인하기', href: '/postList' },
 
+]
 export default function Post() {
     const [title, setTitle] = useState<string | undefined>();
     const [context, setContext] = useState<string | undefined>();
-    const [isButton, setIsButton] = useState<boolean>(false);
-    useEffect(()=>{
-        if(title && title.length >0 && context&& context.length >0 ){
-           setIsButton(true)
-        }
-      
-    }, [context, title])
+    const router = useRouter();
+    async function newPost(){
 
-    function checkPost(){
-        
-        console.log('야호?')
-        if(title && title.length < 10 && context){
+         if( title && title.length < 10 && context){
             alert('제목은 10글자 이상 작성해야 합니다.')
             return false
         }
-        if(title && title.length >=10 && context && context.length >0 ){
+        if(title && context && title.length >=10 && context.length > 0){
 
-           return true
+            const res = await axios.post("http://localhost:4000/post",{
+                title:title,
+                context:context
+            }).then((res)=>{
+                console.log(res.data)
+                alert('새 게시글이 등록 되었어요!')
+                document.querySelector("#comment").value = ''
+                document.querySelector("#title").value = ''
+                
+            }).catch((err)=>{
+                console.log(err)
+            })
+            
         }
     }
 
-    async function newPost(title:string, context:string){
-        const res = await axios.post("http://localhost:4000/post",{
-        title:title,
-        context:context
-    }).then((res)=>{
-         alert('새 게시글이 등록 되었어요!')
-    }).catch((err)=>{
-        console.log(err)
-    })
-    
-    }
-
   return (
-     <form onSubmit={checkPost()} action={checkPost() ? newPost(title, context): null}>
+
     <div className="sm:mx-auto sm:w-full sm:max-w-lg">
            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <Navbar />
         <div>
           
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            게시글을 성성할 수 있습니다 ✏️
-          </h2>
+       
         </div>
         </div>
     
@@ -84,13 +79,8 @@ export default function Post() {
               >
                 미리보기
               </Tab>
-
-              {/* These buttons are here simply as examples and don't actually do anything. */}
-
             </Tab.List>
-           
         <Tab.Panels className="mt-2">
-             
               <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
               
                 <label htmlFor="comment" className="sr-only">
@@ -98,7 +88,6 @@ export default function Post() {
                 </label>
                 <div>
                     <textarea
-                   
                     required
                     rows={1}
                     name="title"
@@ -110,10 +99,8 @@ export default function Post() {
                   />
 
                   <div className='mb-t mt-5'></div>
-
                   <textarea
-                    itemType='button'
-                  required
+                    required
                     rows={5}
                     name="comment"
                     id="comment"
@@ -128,7 +115,10 @@ export default function Post() {
               <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
                 <div className="border-b">
                   <div className="mx-px mt-px px-3 pb-12 pt-2 text-sm leading-5 text-gray-800">
-                    미리보기가 여기에 표시됩니다.
+                   {title}
+                  </div>
+                    <div className="mx-px mt-px px-3 pb-12 pt-2 text-sm leading-5 text-gray-800">
+                   {context}
                   </div>
                 </div>
               </Tab.Panel>
@@ -137,27 +127,24 @@ export default function Post() {
           </>
         )}
       </Tab.Group>
-      <div className="mt-2 flex justify-end">
-        {isButton ?
-           <button
-        id="submit_button"
-        type="submit"
-        className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          게시글 작성하기
-        </button> :
+      <div className="mt-2 flex justify-end">             
+      {context&& context.length >0 &&title && title.length >0 ?
+         <button
+    //   type="submit"
+      onClick={()=>newPost() }
+      className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        게시글 작성하기
+      </button> :
+         <button
+      disabled
+      className="inline-flex items-center rounded-md bg-indigo-300 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        게시글 작성하기
+      </button>
+  }
 
-           <button
-        disabled
-        className="inline-flex items-center rounded-md bg-indigo-300 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          게시글 작성하기
-        </button>
-    }
-                    
       </div>
-    
     </div>
-     </form>
   )
 }

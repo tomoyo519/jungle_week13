@@ -1,4 +1,5 @@
 // import '..src/app/'
+import Navbar from "@/app/navbar"
 import Image from "next/image"
 import "tailwindcss/tailwind.css"
 export default function Login(){
@@ -17,10 +18,8 @@ export default function Login(){
   <div h-full>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-         
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            강아지를 잡으셨군요!
-          </h2>
+         <Navbar/>
+       
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
