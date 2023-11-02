@@ -1,15 +1,15 @@
-import { useRouter } from 'next/navigation';
-import { Tab } from '@headlessui/react';
-import 'tailwindcss/tailwind.css';
-import { useState } from 'react';
-import axios from 'axios';
-import Navbar from '@/app/navbar';
+import { useRouter } from "next/navigation";
+import { Tab } from "@headlessui/react";
+import "tailwindcss/tailwind.css";
+import { useState } from "react";
+import axios from "axios";
+import Navbar from "@/app/components/navbar";
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 const navigation = [
-  { name: '게시글 작성하기', href: '/post' },
-  { name: '게시글 확인하기', href: '/postList' },
+  { name: "게시글 작성하기", href: "/post" },
+  { name: "게시글 확인하기", href: "/postList" },
 ];
 export default function Post() {
   const [title, setTitle] = useState<string | undefined>();
@@ -17,22 +17,22 @@ export default function Post() {
   const router = useRouter();
   async function newPost() {
     if (title && title.length < 10 && context) {
-      alert('제목은 10글자 이상 작성해야 합니다.');
+      alert("제목은 10글자 이상 작성해야 합니다.");
       return false;
     }
     if (title && context && title.length >= 10 && context.length > 0) {
       const res = await axios
-        .post('http://localhost:4000/post', {
+        .post("http://localhost:4000/post", {
           title: title,
           context: context,
         })
         .then((res) => {
-          alert('새 게시글이 등록 되었어요!');
-          document.querySelector('#comment').value = '';
-          document.querySelector('#title').value = '';
+          alert("새 게시글이 등록 되었어요!");
+          document.querySelector("#comment").value = "";
+          document.querySelector("#title").value = "";
         })
         .catch((err) => {
-          console.log(err);
+          alert(err.data);
         });
     }
   }
@@ -52,9 +52,9 @@ export default function Post() {
                 className={({ selected }) =>
                   classNames(
                     selected
-                      ? 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                      : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900',
-                    'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
+                      ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                      : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                    "rounded-md border border-transparent px-3 py-1.5 text-sm font-medium",
                   )
                 }
               >
@@ -64,9 +64,9 @@ export default function Post() {
                 className={({ selected }) =>
                   classNames(
                     selected
-                      ? 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                      : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900',
-                    'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
+                      ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                      : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                    "ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium",
                   )
                 }
               >
@@ -86,7 +86,7 @@ export default function Post() {
                     id="title"
                     className=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="10글자 이상 제목을 작성해주세요."
-                    defaultValue={''}
+                    defaultValue={""}
                     onChange={(e) => setTitle(e.target.value)}
                   />
 
@@ -98,7 +98,7 @@ export default function Post() {
                     id="comment"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="내용을 작성해주세요."
-                    defaultValue={''}
+                    defaultValue={""}
                     onChange={(e) => setContext(e.target.value)}
                   />
                 </div>

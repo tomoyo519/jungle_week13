@@ -1,14 +1,7 @@
-"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "tailwindcss/tailwind.css";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import RecoilContextProvider from "./recoilContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +11,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <RecoilRoot>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    </RecoilRoot>
+    <html lang="en">
+      <body className={inter.className}>
+        <RecoilContextProvider>{children}</RecoilContextProvider>
+      </body>
+    </html>
   );
 }

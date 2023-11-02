@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Navbar from "@/app/navbar";
+import Navbar from "@/pages/components/navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 

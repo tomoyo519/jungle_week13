@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import 'tailwindcss/tailwind.css';
-import Navbar from '@/app/navbar';
+import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import "tailwindcss/tailwind.css";
+import Navbar from "@/pages/components/navbar";
 export default function PostList() {
   const [posts, setPosts] = useState<IPost>();
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function PostList() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:4000/post').then((res) => {
+    axios.get("http://localhost:4000/post").then((res) => {
       setPosts(res.data);
     });
   }, []);
@@ -52,7 +52,7 @@ export default function PostList() {
                     <div className="flex w-0 flex-1 relative -mr-px items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
                       <Link
                         href={{
-                          pathname: '/post/[id]',
+                          pathname: "/post/[id]",
                           query: { id: post.id },
                         }}
                         className="flex items-center justify-center"
