@@ -1,15 +1,16 @@
+"use client";
 import Navbar from "@/app/components/navbar";
 import "tailwindcss/tailwind.css";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { userState } from "@/app/recoilContextProvider";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { userState } from "./_app";
+import { useSetRecoilState } from "recoil";
 
 export default function Login() {
   const [signupMode, setSignupMode] = useState<boolean>(false);
   const router = useRouter();
-  const [loginStatus, setLoginStatus] = useRecoilState(userState);
+  const setLoginStatus = useSetRecoilState(userState);
 
   function beforeSubmit() {
     let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -58,8 +59,8 @@ export default function Login() {
         .then((res) => {
           let result = { email: email, isLogin: true };
           setLoginStatus(result);
+          // console.log("loginStatus", loginStatus.isLogin);
           alert("로그인이 완료 되었습니다.");
-          console.log("loginStatus", loginStatus);
           router.push("/");
         })
         .catch((err) => {

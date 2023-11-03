@@ -2,16 +2,15 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRecoilValue, useRecoilState } from "recoil";
 import "tailwindcss/tailwind.css";
-import { userState } from "../recoilContextProvider";
+import { userState } from "@/pages/_app";
+
 export default function Navbar() {
   const navigation = [
     { name: "게시글 작성하기", href: "/post" },
     { name: "게시글 확인하기", href: "/postList" },
   ];
   const loginStatus = useRecoilValue(userState);
-  {
-    console.log("nav에서 loginStatus", loginStatus);
-  }
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -50,12 +49,21 @@ export default function Navbar() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            로그인 하기 <span aria-hidden="true">&rarr;</span>
-          </a>
+          {loginStatus.isLogin ? (
+            <a
+              href="/login"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              어서오세요 {loginStatus.email}님,
+            </a>
+          ) : (
+            <a
+              href="/login"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              로그인 하기 <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
         </div>
       </nav>
     </header>
