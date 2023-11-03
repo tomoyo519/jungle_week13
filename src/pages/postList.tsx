@@ -15,7 +15,6 @@ export default function PostList() {
   }
 
   useEffect(() => {
-    console.log("useEffect 안에..");
     const res = axios.get("http://localhost:4000/post").then((res) => {
       setPosts(res.data);
     });

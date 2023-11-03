@@ -29,7 +29,6 @@ export default function Sample() {
         },
       })
       .then((res) => {
-        console.log("thisisres", res);
         if (res.data.length > 0) {
           setPost(res.data[0]);
           setEditedTitle(res.data[0].title);
@@ -46,7 +45,7 @@ export default function Sample() {
         router.push("/postList");
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   }
 
