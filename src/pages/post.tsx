@@ -54,7 +54,7 @@ export default function Post() {
                     selected
                       ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
                       : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
-                    "rounded-md border border-transparent px-3 py-1.5 text-sm font-medium",
+                    "rounded-md border border-transparent px-3 py-1.5 text-sm font-medium"
                   )
                 }
               >
@@ -66,7 +66,7 @@ export default function Post() {
                     selected
                       ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
                       : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
-                    "ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium",
+                    "ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium"
                   )
                 }
               >
