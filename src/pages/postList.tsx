@@ -1,14 +1,13 @@
-import Link from 'next/link';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import 'tailwindcss/tailwind.css';
-import Navbar from '@/app/navbar';
+import Link from "next/link";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import "tailwindcss/tailwind.css";
+import Navbar from "@/components/navbar";
+import { useRecoilValue } from "recoil";
+import { userState } from "./_app";
 export default function PostList() {
   const [posts, setPosts] = useState<IPost>();
-  const router = useRouter();
-  const { id } = router.query;
-
+  const loginStatus = useRecoilValue(userState);
   interface IPost {
     id: number;
     title: string;
@@ -16,18 +15,19 @@ export default function PostList() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:4000/post').then((res) => {
+    console.log("useEffect 안에..");
+    const res = axios.get("http://localhost:4000/post").then((res) => {
       setPosts(res.data);
     });
   }, []);
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-2lg pt-14">
+    <div className="sm:mx-auto sm:w-full sm:max-w-2lg ">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <Navbar />
         <ul
           role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-10 bg-gray-50 rounded-2xl mt-14 pt-14 pb-14 mb-14  min-h-full"
         >
           {posts &&
             posts.map((post: IPost) => (
@@ -38,11 +38,11 @@ export default function PostList() {
                 <div className="flex w-full items-center justify-between space-x-6 p-6">
                   <div className="flex-1 truncate">
                     <div className="flex items-center space-x-3">
-                      <h3 className="truncate text-sm font-medium text-gray-900">
+                      <h3 className="truncate text-lg font-medium text-gray-900">
                         {post.title}
                       </h3>
                     </div>
-                    <p className="mt-1 truncate text-sm text-gray-500">
+                    <p className="mt-1 truncate text-md text-gray-500">
                       {post.context}
                     </p>
                   </div>
@@ -52,7 +52,7 @@ export default function PostList() {
                     <div className="flex w-0 flex-1 relative -mr-px items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
                       <Link
                         href={{
-                          pathname: '/post/[id]',
+                          pathname: "/post/[id]",
                           query: { id: post.id },
                         }}
                         className="flex items-center justify-center"
@@ -73,7 +73,7 @@ export default function PostList() {
                             />
                           </svg>
                         </div>
-                        <div>크게 보실래요?</div>
+                        <div>크게 보기</div>
                       </Link>
                     </div>
                   </div>
