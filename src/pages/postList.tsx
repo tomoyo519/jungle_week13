@@ -27,7 +27,7 @@ export default function PostList() {
         <Navbar />
         <ul
           role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-14"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-10 bg-gray-50 rounded-2xl mt-14 pt-14 pb-14 mb-14  min-h-full"
         >
           {posts &&
             posts.map((post: IPost) => (
