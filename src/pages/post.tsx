@@ -4,6 +4,9 @@ import "tailwindcss/tailwind.css";
 import { useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/navbar";
+import { useRecoilState } from "recoil";
+import { userState } from "./_app";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -14,7 +17,8 @@ const navigation = [
 export default function Post() {
   const [title, setTitle] = useState<string | undefined>();
   const [context, setContext] = useState<string | undefined>();
-  const router = useRouter();
+  const [loginStatus, setLoginStatus] = useRecoilState(userState);
+
   async function newPost() {
     if (title && title.length < 10 && context) {
       alert("제목은 10글자 이상 작성해야 합니다.");
@@ -23,6 +27,7 @@ export default function Post() {
     if (title && context && title.length >= 10 && context.length > 0) {
       const res = await axios
         .post("http://localhost:4000/post", {
+          email: loginStatus.email,
           title: title,
           context: context,
         })
@@ -41,7 +46,6 @@ export default function Post() {
     <div className="sm:mx-auto sm:w-full sm:max-w-lg">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <Navbar />
-        <div></div>
       </div>
 
       <Tab.Group>

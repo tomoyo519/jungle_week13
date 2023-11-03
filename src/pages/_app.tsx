@@ -11,7 +11,7 @@ interface IUser {
 }
 export const userState = atom({
   key: "userState",
-  default: false,
+  default: { email: "", isLogin: false },
 
   effects_UNSTABLE: [persistAtom],
 });

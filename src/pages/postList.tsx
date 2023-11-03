@@ -15,18 +15,19 @@ export default function PostList() {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:4000/post").then((res) => {
+    console.log("useEffect 안에..");
+    const res = axios.get("http://localhost:4000/post").then((res) => {
       setPosts(res.data);
     });
   }, []);
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-2lg pt-14">
+    <div className="sm:mx-auto sm:w-full sm:max-w-2lg ">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <Navbar loginStatus={loginStatus.isLogin} />
+        <Navbar />
         <ul
           role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-14"
         >
           {posts &&
             posts.map((post: IPost) => (
@@ -37,11 +38,11 @@ export default function PostList() {
                 <div className="flex w-full items-center justify-between space-x-6 p-6">
                   <div className="flex-1 truncate">
                     <div className="flex items-center space-x-3">
-                      <h3 className="truncate text-sm font-medium text-gray-900">
+                      <h3 className="truncate text-lg font-medium text-gray-900">
                         {post.title}
                       </h3>
                     </div>
-                    <p className="mt-1 truncate text-sm text-gray-500">
+                    <p className="mt-1 truncate text-md text-gray-500">
                       {post.context}
                     </p>
                   </div>
@@ -72,7 +73,7 @@ export default function PostList() {
                             />
                           </svg>
                         </div>
-                        <div>크게 보실래요?</div>
+                        <div>크게 보기</div>
                       </Link>
                     </div>
                   </div>

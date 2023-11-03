@@ -56,7 +56,7 @@ export default function Login() {
           },
         })
         .then((res) => {
-          setLoginStatus(true);
+          setLoginStatus({ email: email, isLogin: true });
           alert("로그인이 완료 되었습니다.");
           router.push("/");
         })
