@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navbar from "../app/components/navbar";
+import Navbar from "../components/navbar";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               획기적인 게시글을
             </h1>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               작성해보세요.
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">

@@ -1,14 +1,13 @@
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
-import Navbar from "@/pages/components/navbar";
+import Navbar from "@/components/navbar";
+import { useRecoilValue } from "recoil";
+import { userState } from "./_app";
 export default function PostList() {
   const [posts, setPosts] = useState<IPost>();
-  const router = useRouter();
-  const { id } = router.query;
-
+  const loginStatus = useRecoilValue(userState);
   interface IPost {
     id: number;
     title: string;
@@ -24,7 +23,7 @@ export default function PostList() {
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-2lg pt-14">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <Navbar />
+        <Navbar loginStatus={loginStatus.isLogin} />
         <ul
           role="list"
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"

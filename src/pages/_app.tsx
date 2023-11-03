@@ -1,17 +1,30 @@
-// import "../styles/globals.css";
+import "tailwindcss/tailwind.css";
 import { RecoilRoot, atom } from "recoil";
-// import RecoilizeDebugger from 'recoilize';
+import type { AppProps } from "next/app";
+import { recoilPersist } from "recoil-persist";
+const { persistAtom } = recoilPersist();
+import { HydrationProvider, Client } from "react-hydration-provider";
 
-export const userState = atom<IUser>({
+interface IUser {
+  email: string;
+  isLogin: boolean;
+}
+export const userState = atom({
   key: "userState",
-  default: { email: "", isLogin: false },
+  default: false,
+
+  effects_UNSTABLE: [persistAtom],
 });
-function MyApp({ Component, pageProps }) {
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <RecoilRoot>
-      {/* <RecoilizeDebugger /> */}
-      <Component {...pageProps} />
-    </RecoilRoot>
+    <HydrationProvider>
+      <Client>
+        <RecoilRoot>
+          <Component {...pageProps} />
+        </RecoilRoot>
+      </Client>
+    </HydrationProvider>
   );
 }
 

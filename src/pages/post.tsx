@@ -3,7 +3,7 @@ import { Tab } from "@headlessui/react";
 import "tailwindcss/tailwind.css";
 import { useState } from "react";
 import axios from "axios";
-import Navbar from "@/app/components/navbar";
+import Navbar from "@/components/navbar";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }

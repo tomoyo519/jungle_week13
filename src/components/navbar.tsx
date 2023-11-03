@@ -1,15 +1,15 @@
-"use client";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import { useRecoilState } from "recoil";
 import "tailwindcss/tailwind.css";
 import { userState } from "@/pages/_app";
+import Link from "next/link";
 
 export default function Navbar() {
   const navigation = [
     { name: "게시글 작성하기", href: "/post" },
     { name: "게시글 확인하기", href: "/postList" },
   ];
-  const loginStatus = useRecoilValue(userState);
+  const [loginStatus, setLoginStatus] = useRecoilState(userState);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -26,12 +26,12 @@ export default function Navbar() {
               alt=""
             />
           </a>
+          {console.log("thisisloginStatus.islogin", loginStatus)}
         </div>
         <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            // onClick={consoleFalse}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -49,20 +49,20 @@ export default function Navbar() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {loginStatus.isLogin ? (
-            <a
+          {loginStatus ? (
+            <Link
               href="/login"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              어서오세요 {loginStatus.email}님,
-            </a>
+              어서오세요,
+            </Link>
           ) : (
-            <a
+            <Link
               href="/login"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               로그인 하기 <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           )}
         </div>
       </nav>
