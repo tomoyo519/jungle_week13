@@ -10,7 +10,12 @@ export default function Navbar() {
     { name: "게시글 확인하기", href: "/postList" },
   ];
   const [loginStatus, setLoginStatus] = useRecoilState(userState);
+  console.log("loginStatus", loginStatus);
 
+  function setLogout() {
+    alert("로그아웃이 완료 되었어요!");
+    setLoginStatus({ email: "", isLogin: false });
+  }
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -36,7 +41,7 @@ export default function Navbar() {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className=" flex lg:gap-x-12">
           {navigation.map((item) => (
             <a
               key={item.name}
@@ -47,10 +52,21 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {loginStatus ? (
-            <div className="text-sm font-semibold leading-6 text-gray-900">
-              어서오세요, {loginStatus.email}님
+
+        <div className=" flex flex-1 justify-end">
+          {loginStatus.isLogin ? (
+            <div className="flex items-center justify-center">
+              <div className="text-sm font-semibold leading-6 text-gray-900">
+                어서오세요, {loginStatus.email}님
+              </div>
+              <div className="flex items-center justify-center ml-3">
+                <button
+                  onClick={() => setLogout()}
+                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  로그아웃하기 <span aria-hidden="true"></span>
+                </button>
+              </div>
             </div>
           ) : (
             <Link

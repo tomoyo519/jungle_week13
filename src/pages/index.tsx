@@ -2,7 +2,7 @@ import Navbar from "../components/navbar";
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen">
       <Navbar />
 
       <div className="relative isolate px-6 pt-14 lg:px-8">

@@ -22,12 +22,14 @@ export default function PostList() {
   }, []);
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-2lg ">
+    <div className="sm:mx-auto sm:w-full sm:max-w-2lg bg-white min-h-screen">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <Navbar />
+      </div>
+      <div className=" mr-10 ml-10 flex">
         <ul
           role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-10 bg-gray-50 rounded-2xl mt-14 pt-14 pb-14 mb-14  min-h-full"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-10 bg-gray-100 rounded-2xl   min-h-full"
         >
           {posts &&
             posts.map((post: IPost) => (

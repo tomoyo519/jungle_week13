@@ -50,8 +50,9 @@ export default function Login() {
         });
     }
     if (!signupMode) {
+      const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
       const res = axios
-        .get("http://localhost:4000/people", {
+        .get(`${API_URL}`, {
           params: {
             email: email,
             password: password,
@@ -70,7 +71,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="h-max bg-white ">
+      <div className="min-h-screen bg-white ">
         <div>
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">

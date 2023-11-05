@@ -74,12 +74,12 @@ export default function Sample() {
   }
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-2lg ">
+    <div className="sm:mx-auto sm:w-full sm:max-w-2lg bg-white min-h-screen">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <Navbar />
       </div>
 
-      <div className="mx-auto  mb-14 max-w-3xl p-10 rounded-2xl bg-gray-50">
+      <div className="mx-auto mr-10 ml-10  p-10 rounded-2xl bg-gray-100">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2  ">
           <div className="sm:col-span-2 ">
             {post && (
