@@ -13,15 +13,17 @@ export default function Login() {
 
   function beforeSubmit() {
     let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    const email = document.querySelector("#email").value;
-    const password = document.querySelector("#password").value;
+    const email = document.querySelector<HTMLInputElement>("#email")!.value;
+    const password =
+      document.querySelector<HTMLInputElement>("#password")!.value;
 
     if (signupMode) {
-      const checkPassword = document.querySelector("#checkpassword").value;
+      const checkPassword =
+        document.querySelector<HTMLInputElement>("#checkpassword")!.value;
       if (password != checkPassword) {
         alert("비밀번호가 동일하지 않습니다! 다시 입력해주세요.");
-        password.value = "";
-        checkPassword.value = "";
+        document.querySelector<HTMLInputElement>("#password")!.value = "";
+        document.querySelector<HTMLInputElement>("#checkpassword")!.value = "";
         return false;
       }
     }

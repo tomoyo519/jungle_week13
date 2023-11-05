@@ -7,7 +7,7 @@ import Navbar from "@/components/navbar";
 import { useRecoilState } from "recoil";
 import { userState } from "./_app";
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 const navigation = [
@@ -33,8 +33,8 @@ export default function Post() {
         })
         .then((res) => {
           alert("새 게시글이 등록 되었어요!");
-          document.querySelector("#comment").value = "";
-          document.querySelector("#title").value = "";
+          document.querySelector<HTMLInputElement>("#comment")!.value = "";
+          document.querySelector<HTMLInputElement>("#title")!.value = "";
         })
         .catch((err) => {
           alert(err.data);

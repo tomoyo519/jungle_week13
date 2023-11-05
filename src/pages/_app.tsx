@@ -1,3 +1,4 @@
+import "./globals.css";
 import "tailwindcss/tailwind.css";
 import { RecoilRoot, atom } from "recoil";
 import type { AppProps } from "next/app";

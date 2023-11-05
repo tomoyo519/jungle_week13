@@ -9,13 +9,13 @@ export default function PostList() {
   const [posts, setPosts] = useState<IPost>();
   const loginStatus = useRecoilValue(userState);
   interface IPost {
+    map: any;
     id: number;
     title: string;
     context: string;
   }
 
   useEffect(() => {
-    console.log("useEffect 안에..");
     const res = axios.get("http://localhost:4000/post").then((res) => {
       setPosts(res.data);
     });
