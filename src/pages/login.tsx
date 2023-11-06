@@ -35,24 +35,28 @@ export default function Login() {
       alert("비밀번호는 영문, 숫자 혼합 8글자 이상으로 작성 해주세요.");
       return false;
     }
+
+    const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     if (signupMode) {
       const res = axios
-        .post("http://localhost:4000/people", {
+        .post(`${API_URL}/people`, {
           email: email,
           password: password,
         })
         .then((res) => {
           alert("회원가입이 완료 되었어요!");
+          document.querySelector<HTMLInputElement>("#email")!.value = "";
+          document.querySelector<HTMLInputElement>("#password")!.value = "";
           setSignupMode(false);
         })
         .catch((err) => {
+          console.log(err);
           alert(err);
         });
     }
     if (!signupMode) {
-      const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
       const res = axios
-        .get(`${API_URL}`, {
+        .get(`${API_URL}/people`, {
           params: {
             email: email,
             password: password,
@@ -78,13 +82,10 @@ export default function Login() {
               <Navbar />
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm pt-14">
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm pt-14 bg-gray-100 p-10 mb-10 rounded-2xl">
               <div className="space-y-6">
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label className="block text-sm font-medium leading-6 text-gray-900">
                     아이디
                   </label>
                   <div className="mt-2">
@@ -92,20 +93,15 @@ export default function Login() {
                       id="email"
                       name="email"
                       type="text"
-                      autoComplete="email"
-                      required
                       placeholder="3글자 이상 입력해주세요."
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="p-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex items-center justify-between">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
                       비밀번호
                     </label>
                     <div className="text-sm"></div>
@@ -115,20 +111,15 @@ export default function Login() {
                       id="password"
                       name="password"
                       type="password"
-                      required
                       placeholder="영문, 숫자 포함 8글자 이상 입력해주세요."
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="p-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-
                 {signupMode ? (
-                  <>
+                  <div>
                     <div className="flex items-center justify-between">
-                      <label
-                        htmlFor="password"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
+                      <label className="block text-sm font-medium leading-6 text-gray-900">
                         비밀번호 확인
                       </label>
                       <div className="text-sm"></div>
@@ -140,13 +131,14 @@ export default function Login() {
                         type="password"
                         required
                         placeholder="영문, 숫자 포함 8글자 이상 입력해주세요."
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="p-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <></>
                 )}
+
                 {signupMode ? (
                   <>
                     {" "}

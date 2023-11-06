@@ -84,12 +84,37 @@
       "email": "i2sign",
       "password": "wjdwnd5361",
       "id": 17
+    },
+    {
+      "email": "qwer1234",
+      "password": "qwer1234",
+      "id": 18
+    },
+    {
+      "email": "abcd1234",
+      "password": "qwer1234",
+      "id": 19
+    },
+    {
+      "email": "abcde1234",
+      "password": "qwer1234",
+      "id": 20
+    },
+    {
+      "email": "cc1234",
+      "password": "qwer1234",
+      "id": 21
+    },
+    {
+      "email": "qqqq1234",
+      "password": "qqqq1234",
+      "id": 22
     }
   ],
   "post": [
     {
       "title": "누구보다 빠른 게시판123456",
-      "context": "써보실?123456",
+      "context": "써보라니까?룰루랄라라라랄라라라랄라",
       "id": 1
     },
     {
@@ -157,6 +182,18 @@
       "title": "Vercel 배포하기4",
       "context": "Vercel 배포하기4",
       "id": 13
+    },
+    {
+      "email": "qqqq1234",
+      "title": "서버 컴포넌트관련 질문드립니다.",
+      "context": "아니요, 불가능합니다. 서버 컴포넌트는 클라이언트 상호 작용(onClicks, 후크...)을 처리하도록 설계되지 않았습니다",
+      "id": 14
+    },
+    {
+      "email": "qwer1234",
+      "title": "니가그린 기린그림은 목이 긴 기린그림이고",
+      "context": "내가 그린 기린 그림은 목이 짧은 기린 그림이다.",
+      "id": 15
     }
   ]
 }

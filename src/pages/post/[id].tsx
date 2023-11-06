@@ -22,8 +22,9 @@ export default function Sample() {
   const [editedContext, setEditedContext] = useState<string>("");
 
   useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     const res = axios
-      .get("http://localhost:4000/post", {
+      .get(`${API_URL}/post`, {
         params: {
           id: id,
         },
@@ -38,8 +39,9 @@ export default function Sample() {
   }, [id]);
 
   function deletePost() {
+    const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     const res = axios
-      .delete(`http://localhost:4000/post/${id}`)
+      .delete(`${API_URL}/post/${id}`)
       .then((res) => {
         alert("삭제가 완료 되었어요!.");
         router.push("/postList");
@@ -59,8 +61,9 @@ export default function Sample() {
     if (editedContext.length <= 0 && editedTitle.length < 10) {
       alert("제목은 열 자자 이상, 내용은 한 글자 이상 작성 해주세요.");
     }
+    const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     const res = axios
-      .put(`http://localhost:4000/post/${id}`, {
+      .put(`${API_URL}/post/${id}`, {
         title: editedTitle,
         context: editedContext,
       })
@@ -79,8 +82,8 @@ export default function Sample() {
         <Navbar />
       </div>
 
-      <div className="mx-auto mr-10 ml-10  p-10 rounded-2xl bg-gray-100">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2  ">
+      <div className="mx-auto mr-10 ml-10  p-10 rounded-2xl bg-gray-100 mb-10">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 ">
           <div className="sm:col-span-2 ">
             {post && (
               <div>
@@ -93,9 +96,8 @@ export default function Sample() {
                           rows={1}
                           name="title"
                           id="title"
-                          className=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className=" p-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                           placeholder="10글자 이상 제목을 작성해주세요."
-                          defaultValue={""}
                           value={editedTitle}
                           onChange={(e) => setEditedTitle(e.target.value)}
                         />
@@ -105,9 +107,8 @@ export default function Sample() {
                           rows={19}
                           name="comment"
                           id="comment"
-                          className="min-h-[440px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="p-1 min-h-[440px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                           placeholder="내용을 작성해주세요."
-                          defaultValue={""}
                           value={editedContext}
                           onChange={(e) => setEditedContext(e.target.value)}
                         />
