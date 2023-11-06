@@ -54,7 +54,7 @@ export default function Sample() {
       });
   }
 
-  function editPost(post: IPost) {
+  function editPost() {
     if (editedTitle.length < 10 && editedContext.length > 0) {
       alert("제목은 열글자 이상 작성해주세요");
     }
@@ -64,7 +64,7 @@ export default function Sample() {
     if (editedContext.length <= 0 && editedTitle.length < 10) {
       alert("제목은 열 자자 이상, 내용은 한 글자 이상 작성 해주세요.");
     }
-    if (editedContext == post.title && editedTitle == post.title) {
+    if (post && editedContext == post.title && editedTitle == post.title) {
       console.log(editedContext, post.title, editedTitle, post.title);
       alert("변경 내용이 없어요!");
       return;
@@ -143,7 +143,7 @@ export default function Sample() {
             <div className=" w-full justify-end flex  ">
               <div className="m-1">
                 <button
-                  onClick={() => editPost(post)}
+                  onClick={() => editPost()}
                   type="submit"
                   className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
