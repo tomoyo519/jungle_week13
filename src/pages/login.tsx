@@ -38,10 +38,6 @@ export default function Login() {
 
     const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     if (signupMode) {
-      console.log({
-        email: email,
-        password: password,
-      });
       const res = axios
         .post(`${API_URL}/users`, {
           email: email,
