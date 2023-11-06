@@ -38,6 +38,7 @@ export default function Login() {
 
     const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     if (signupMode) {
+      console.log(`${API_URL}/register`);
       const res = axios
         .post(`${API_URL}/register`, {
           email: email,
@@ -50,6 +51,7 @@ export default function Login() {
           setSignupMode(false);
         })
         .catch((err) => {
+          console.log(err);
           alert(err);
         });
     }
@@ -65,6 +67,7 @@ export default function Login() {
           router.push("/");
         })
         .catch((err) => {
+          console.log(err);
           alert(err);
         });
     }

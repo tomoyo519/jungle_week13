@@ -4,6 +4,11 @@
       "email": "vanessa.cheong1@gmail.com",
       "password": "$2a$10$Gy6AoackCS32g6ylFzSMCOwV5HNeyYnoPjA2aedVcGzBqKA3sE9ny",
       "id": 1
+    },
+    {
+      "email": "vanessa.cheong@kkeulmit.co.kr",
+      "password": "$2a$10$a0oL6NcdNkFK2oAHQtSCbucnbgLl2LYYlYp/jACAwZdqYgXQgQN6a",
+      "id": 2
     }
   ],
   "post": [
