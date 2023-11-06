@@ -9,6 +9,11 @@
       "email": "vanessa.cheong@kkeulmit.co.kr",
       "password": "$2a$10$a0oL6NcdNkFK2oAHQtSCbucnbgLl2LYYlYp/jACAwZdqYgXQgQN6a",
       "id": 2
+    },
+    {
+      "email": "mupasa@mupasa.com",
+      "password": "$2a$10$wZ0/vGfKgSBfTGjGfxHggOAN88W4LnfkORhbkidfakINRQFFn.Hyi",
+      "id": 3
     }
   ],
   "post": [
