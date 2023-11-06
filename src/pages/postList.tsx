@@ -5,21 +5,27 @@ import "tailwindcss/tailwind.css";
 import Navbar from "@/components/navbar";
 import { useRecoilValue } from "recoil";
 import { userState } from "./_app";
+
 export default function PostList() {
-  const [posts, setPosts] = useState<IPost>();
+  const [posts, setPosts] = useState<IPost[]>([
+    { id: 0, title: "", context: "" },
+  ]);
   const loginStatus = useRecoilValue(userState);
+
   interface IPost {
-    map: any;
     id: number;
     title: string;
     context: string;
   }
 
   useEffect(() => {
-    const res = axios.get("http://localhost:4000/post").then((res) => {
-      setPosts(res.data);
-    });
-  }, []);
+    if (loginStatus.isLogin) {
+      const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
+      const res = axios.get(`${API_URL}/post`).then((res) => {
+        setPosts(res.data);
+      });
+    }
+  }, [loginStatus.isLogin]);
 
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-2lg bg-white min-h-screen">
@@ -29,9 +35,11 @@ export default function PostList() {
       <div className=" mr-10 ml-10 flex">
         <ul
           role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-10 bg-gray-100 rounded-2xl   min-h-full"
+          className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-10 ${
+            posts[0].id != 0 ? "bg-gray-100" : ""
+          }  rounded-2xl min-h-full mb-10`}
         >
-          {posts &&
+          {posts[0].id != 0 ? (
             posts.map((post: IPost) => (
               <li
                 key={post.id}
@@ -81,7 +89,10 @@ export default function PostList() {
                   </div>
                 </div>
               </li>
-            ))}
+            ))
+          ) : (
+            <>텅</>
+          )}
         </ul>
       </div>
     </div>

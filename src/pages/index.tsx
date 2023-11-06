@@ -31,12 +31,9 @@ export default function Home() {
               하지만 강아지를 잡기전까진 게시글을 작성할 수 없습니다...
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
+              <div className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 강아지 클릭해보기 <span aria-hidden="true">→</span>
-              </a>
+              </div>
             </div>
             <Shiba />
           </div>

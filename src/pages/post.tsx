@@ -20,8 +20,9 @@ export default function Post() {
       return false;
     }
     if (title && context && title.length >= 10 && context.length > 0) {
+      const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
       const res = await axios
-        .post("http://localhost:4000/post", {
+        .post(`${API_URL}/post`, {
           email: loginStatus.email,
           title: title,
           context: context,
@@ -38,12 +39,12 @@ export default function Post() {
   }
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-2lg bg-white min-h-screen">
+    <div className="sm:mx-auto sm:w-full sm:max-w-2lg bg-white min-h-screen ">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
         <Navbar />
       </div>
       <div className=" mr-10 ml-10 flex">
-        <div className="w-full p-10 rounded-2xl bg-gray-100">
+        <div className="w-full p-10 rounded-2xl bg-gray-100 mb-10">
           <Tab.Group>
             {({ selectedIndex }) => (
               <>
@@ -129,7 +130,11 @@ export default function Post() {
             ) : (
               <button
                 disabled
-                className="inline-flex items-center rounded-md bg-indigo-300 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className={`inline-flex items-center rounded-md bg-indigo-300 px-3 py-2 text-sm font-semibold text-white shadow-sm ${
+                  title && title.length > 0 && context && context.length > 0
+                    ? "hover:bg-indigo-500"
+                    : ""
+                }  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
               >
                 게시글 작성하기
               </button>
