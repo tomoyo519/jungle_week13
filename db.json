@@ -14,6 +14,11 @@
       "email": "mupasa@mupasa.com",
       "password": "$2a$10$wZ0/vGfKgSBfTGjGfxHggOAN88W4LnfkORhbkidfakINRQFFn.Hyi",
       "id": 3
+    },
+    {
+      "email": "junghyun.kim@kkeulmit.co.kr",
+      "password": "$2a$10$95cElpGNgnhcCfR93LpSRub58xV1.fl1MXAAyDLeHqIdxKSIRYL7y",
+      "id": 4
     }
   ],
   "post": [
