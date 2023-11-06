@@ -21,9 +21,14 @@ export default function PostList() {
   useEffect(() => {
     if (loginStatus.isLogin) {
       const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
-      const res = axios.get(`${API_URL}/post`).then((res) => {
-        setPosts(res.data);
-      });
+      const res = axios
+        .get(`${API_URL}/post`)
+        .then((res) => {
+          setPosts(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
     }
   }, [loginStatus.isLogin]);
 

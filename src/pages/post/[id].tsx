@@ -35,6 +35,9 @@ export default function Sample() {
           setEditedTitle(res.data[0].title);
           setEditedContext(res.data[0].context);
         }
+      })
+      .catch((err) => {
+        alert(err);
       });
   }, [id]);
 
@@ -43,7 +46,7 @@ export default function Sample() {
     const res = axios
       .delete(`${API_URL}/post/${id}`)
       .then((res) => {
-        alert("삭제가 완료 되었어요!.");
+        alert("삭제가 완료 되었어요!");
         router.push("/postList");
       })
       .catch((err) => {
@@ -51,7 +54,7 @@ export default function Sample() {
       });
   }
 
-  function editPost() {
+  function editPost(post: IPost) {
     if (editedTitle.length < 10 && editedContext.length > 0) {
       alert("제목은 열글자 이상 작성해주세요");
     }
@@ -60,6 +63,11 @@ export default function Sample() {
     }
     if (editedContext.length <= 0 && editedTitle.length < 10) {
       alert("제목은 열 자자 이상, 내용은 한 글자 이상 작성 해주세요.");
+    }
+    if (editedContext == post.title && editedTitle == post.title) {
+      console.log(editedContext, post.title, editedTitle, post.title);
+      alert("변경 내용이 없어요!");
+      return;
     }
     const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
     const res = axios
@@ -135,6 +143,7 @@ export default function Sample() {
             <div className=" w-full justify-end flex  ">
               <div className="m-1">
                 <button
+                  onClick={() => editPost(post)}
                   type="submit"
                   className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
@@ -145,7 +154,6 @@ export default function Sample() {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className="w-5 h-5 cursor-pointer"
-                    onClick={() => editPost()}
                   >
                     <path
                       strokeLinecap="round"
@@ -160,6 +168,7 @@ export default function Sample() {
             <div className=" w-full justify-end flex ">
               <div className="m-1">
                 <button
+                  onClick={() => setIsEditMode(true)}
                   type="submit"
                   className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
@@ -170,7 +179,6 @@ export default function Sample() {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className="w-5 h-5 cursor-pointer"
-                    onClick={() => setIsEditMode(true)}
                   >
                     <path
                       strokeLinecap="round"
@@ -183,6 +191,7 @@ export default function Sample() {
 
               <div className="m-1">
                 <button
+                  onClick={() => deletePost()}
                   type="submit"
                   className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
@@ -193,7 +202,6 @@ export default function Sample() {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className=" w-5 h-5 cursor-pointer"
-                    onClick={() => deletePost()}
                   >
                     <path
                       strokeLinecap="round"

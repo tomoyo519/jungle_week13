@@ -22,7 +22,7 @@ export default function Navbar() {
       alert("로그인이 되어있지 않으면 글을 쓸 수 없어요! 로그인 해주세요 :)");
       router.push("/login");
     } else {
-      router.push(`/${href}`);
+      router.push(`${href}`);
     }
   }
   return (
@@ -58,7 +58,7 @@ export default function Navbar() {
           {loginStatus.isLogin ? (
             <div className="flex items-center justify-center">
               <div className="text-sm font-semibold leading-6 text-gray-900">
-                어서오세요, {loginStatus.email}님
+                어서오세요!
               </div>
               <div className="flex items-center justify-center ml-3">
                 <button
