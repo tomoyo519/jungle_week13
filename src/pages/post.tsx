@@ -32,7 +32,9 @@ export default function Post() {
           document.querySelector<HTMLInputElement>("#comment")!.value = "";
           document.querySelector<HTMLInputElement>("#title")!.value = "";
         })
+
         .catch((err) => {
+          console.log(err);
           alert(err.data);
         });
     }
