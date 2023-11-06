@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import "tailwindcss/tailwind.css";
-import { userState } from "@/pages/_app";
+import { userState, toggleState } from "@/pages/_app";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -10,8 +10,11 @@ export default function Navbar() {
     { name: "게시글 확인하기", href: "/postList" },
   ];
   const [loginStatus, setLoginStatus] = useRecoilState(userState);
+  const [isToggle, setIsToggle] = useRecoilState(toggleState);
+
   const router = useRouter();
   function setLogout() {
+    setIsToggle(false);
     alert("로그아웃이 완료 되었어요!");
     router.push("/");
     setLoginStatus({ email: "", isLogin: false });
@@ -43,15 +46,16 @@ export default function Navbar() {
         </div>
 
         <div className="gap-x-2 flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => checkNav(item.href)}
-              className="text-md font-semibold leading-6 text-gray-900 hover:text-gray-500"
-            >
-              {item.name}
-            </button>
-          ))}
+          {isToggle &&
+            navigation.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => checkNav(item.href)}
+                className="text-md font-semibold leading-6 text-gray-900 hover:text-gray-500"
+              >
+                {item.name}
+              </button>
+            ))}
         </div>
 
         <div className=" flex flex-1 justify-end">
