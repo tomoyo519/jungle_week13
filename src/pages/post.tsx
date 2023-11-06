@@ -34,7 +34,6 @@ export default function Post() {
         })
 
         .catch((err) => {
-          console.log(err);
           alert(err.data);
         });
     }

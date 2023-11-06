@@ -65,7 +65,6 @@ export default function Sample() {
       alert("제목은 열 자자 이상, 내용은 한 글자 이상 작성 해주세요.");
     }
     if (post && editedContext == post.title && editedTitle == post.title) {
-      console.log(editedContext, post.title, editedTitle, post.title);
       alert("변경 내용이 없어요!");
       return;
     }
