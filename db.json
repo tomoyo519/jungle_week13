@@ -19,6 +19,11 @@
       "email": "junghyun.kim@kkeulmit.co.kr",
       "password": "$2a$10$95cElpGNgnhcCfR93LpSRub58xV1.fl1MXAAyDLeHqIdxKSIRYL7y",
       "id": 4
+    },
+    {
+      "email": "qwer@qwer",
+      "password": "$2a$10$AJt2M8fVJq101jGGXpqMC.VCOzRDjD390lvucc6GaKUFgPCvZbpeu",
+      "id": 5
     }
   ],
   "post": [

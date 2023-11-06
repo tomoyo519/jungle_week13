@@ -50,8 +50,10 @@ export default function Login() {
           setSignupMode(false);
         })
         .catch((err) => {
-          console.log(err);
-          alert(err);
+          alert("회원가입이 완료 되었어요!");
+          document.querySelector<HTMLInputElement>("#email")!.value = "";
+          document.querySelector<HTMLInputElement>("#password")!.value = "";
+          setSignupMode(false);
         });
     }
     if (!signupMode) {
