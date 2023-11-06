@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar";
-
+import { Shiba } from "../components/three";
 export default function Home() {
   return (
     <div className="bg-white min-h-screen">
@@ -35,9 +35,10 @@ export default function Home() {
                 href="#"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Learn more <span aria-hidden="true">→</span>
+                강아지 클릭해보기 <span aria-hidden="true">→</span>
               </a>
             </div>
+            <Shiba />
           </div>
         </div>
       </div>

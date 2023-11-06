@@ -79,6 +79,11 @@
       "email": "i22sign",
       "password": "qwer1234",
       "id": 16
+    },
+    {
+      "email": "i2sign",
+      "password": "wjdwnd5361",
+      "id": 17
     }
   ],
   "post": [
@@ -122,6 +127,36 @@
       "title": "너의 이름은 무엇이니? 룰루랄라",
       "context": "나나디강",
       "id": 8
+    },
+    {
+      "email": "i2sign",
+      "title": "내가 가는 이길이 어디로 가는지",
+      "context": "알수 없지만",
+      "id": 9
+    },
+    {
+      "email": "i2sign",
+      "title": "Vercel 배포하기",
+      "context": "Vercel 배포하기",
+      "id": 10
+    },
+    {
+      "email": "i2sign",
+      "title": "Vercel 배포하기2",
+      "context": "Vercel 배포하기2",
+      "id": 11
+    },
+    {
+      "email": "i2sign",
+      "title": "Vercel 배포하기3",
+      "context": "Vercel 배포하기3",
+      "id": 12
+    },
+    {
+      "email": "i2sign",
+      "title": "Vercel 배포하기4",
+      "context": "Vercel 배포하기4",
+      "id": 13
     }
   ]
 }
